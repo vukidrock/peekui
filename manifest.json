@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "PeekUI",
   "version": "1.0",
-  "description": "A high-end CSS inspector for designers and developers. Extract fonts, colors, and gradients, export to Tailwind, and stash inspirations.",
+  "description": "High-end CSS inspector: extract styles, colors, gradients, export to Tailwind, and stash design inspirations.",
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
