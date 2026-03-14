@@ -1,0 +1,232 @@
+/* PeekUI Styles */
+
+.ali-inspector-label {
+    position: fixed;
+    z-index: 10000002;
+    background: #ffffff;
+    border-radius: 4px;
+    /* More Swiss/Minimalist */
+    padding: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.02);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 11px;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 160px;
+    opacity: 0;
+    transform: scale(0.98);
+    animation: ali-fade-in-scale 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.ali-inspector-label.is-pinned {
+    box-shadow: 0 15px 40px rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.2);
+}
+
+.ali-inspector-pin {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
+    fill: #e5e7eb;
+    transition: all 0.2s ease;
+}
+
+.ali-inspector-pin:hover {
+    fill: #9ca3af;
+}
+
+.ali-inspector-label.is-pinned .ali-inspector-pin {
+    fill: #3b82f6;
+}
+
+.ali-inspector-label-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 2px 0;
+    transition: background 0.2s ease;
+}
+
+.copyable-row {
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.copyable-row:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.ali-inspector-label-name {
+    color: #9ca3af;
+    font-weight: 400;
+    text-transform: lowercase;
+}
+
+.ali-inspector-label-value {
+    color: #111827;
+    font-weight: 500;
+    text-align: right;
+    min-width: 40px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.1s ease;
+}
+
+.ali-inspector-label-value.is-modified {
+    color: #f97316;
+    /* Tailwind orange-500 */
+    font-weight: 700;
+}
+
+.ali-inspector-value-copied {
+    color: #10B981 !important;
+}
+
+/* Live Edit Input */
+.ali-inspector-edit-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #111827;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    text-align: right;
+    width: 60px;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px dashed #3b82f6;
+}
+
+.ali-inspector-highlighter {
+    position: fixed;
+    z-index: 10000000;
+    border: 2px solid #3b82f6;
+    pointer-events: none;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+.peekui-breadcrumb-badge {
+    position: fixed;
+    z-index: 10000002;
+    /* Higher than label (10000001) but lower than toast */
+    background: #1e293b;
+    color: #f8fafc;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    pointer-events: none;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90vw;
+    transition: top 0.1s ease, left 0.1s ease;
+}
+
+.peekui-breadcrumb-active {
+    color: #f97316;
+    /* Tailwind orange-500 */
+    font-weight: 600;
+}
+
+.ali-inspector-toast {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #1f2937;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 99px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 10000005;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.ali-inspector-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.ali-inspector-toast-tailwind {
+    border: 1px solid #38bdf8;
+    background: #0f172a;
+    /* Darker for Tailwind look */
+    color: #38bdf8;
+}
+
+/* Measurement Guides */
+.ali-inspector-guide {
+    position: fixed;
+    background: #FF004F;
+    z-index: 999999;
+    pointer-events: none;
+}
+
+.ali-inspector-guide-line-h {
+    height: 1px;
+}
+
+.ali-inspector-guide-line-v {
+    width: 1px;
+}
+
+.ali-inspector-guide-label {
+    position: fixed;
+    background: #FF004F;
+    color: #ffffff;
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: 600;
+    z-index: 1000000;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+.ali-inspector-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000001;
+    cursor: crosshair;
+    background: transparent;
+}
+
+@keyframes ali-fade-in-scale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#ali-inspector-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000001;
+    pointer-events: none;
+    image-rendering: -webkit-optimize-contrast;
+}
