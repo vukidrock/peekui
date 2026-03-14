@@ -47,5 +47,14 @@
         "<all_urls>"
       ]
     }
-  ]
+  ],
+  "commands": {
+    "toggle-inspector": {
+      "suggested_key": {
+        "default": "Alt+X",
+        "mac": "Alt+X"
+      },
+      "description": "Bật/Tắt PeekUI Inspector"
+    }
+  }
 }
