@@ -40,6 +40,34 @@ body {
     transform: scale(0.98);
 }
 
+.quick-tips {
+    margin-top: 12px;
+    padding: 10px;
+    background-color: #f1f5f9;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tip-item {
+    font-size: 11px;
+    color: #64748b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tip-item span {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-weight: 600;
+    color: #475569;
+    background-color: #e2e8f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+}
+
 .stash-section {
     padding: 16px;
 }
@@ -127,6 +155,28 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.1);
     vertical-align: middle;
     margin-right: 6px;
+}
+
+.type-badge {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 1px 4px;
+    border-radius: 3px;
+    margin-left: 6px;
+    vertical-align: middle;
+    letter-spacing: 0.02em;
+}
+
+.type-img {
+    background-color: #f0f9ff;
+    color: #0369a1;
+    border: 1px solid #bae6fd;
+}
+
+.type-css {
+    background-color: #f5f3ff;
+    color: #5b21b6;
+    border: 1px solid #ddd6fe;
 }
 
 .stash-actions {

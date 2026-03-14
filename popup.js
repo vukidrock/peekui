@@ -41,8 +41,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div class="stash-item-header">
                     <div>
                         <div class="stash-element-name">
-                            <span class="stash-preview" style="background-color: ${escapeHTML(item.bgColor)}"></span>
+                            ${item.imgSrc ?
+                    `<img src="${escapeHTML(item.imgSrc)}" class="stash-preview" style="object-fit: cover; background: #e2e8f0;">` :
+                    `<span class="stash-preview" style="background: ${item.bgGradient ? escapeHTML(item.bgGradient) : escapeHTML(item.bgColor)}"></span>`
+                }
                             ${escapeHTML(item.elementName)}
+                            <span class="type-badge ${item.imgSrc ? 'type-img' : 'type-css'}">
+                                ${item.imgSrc ? 'IMG' : 'CSS'}
+                            </span>
                         </div>
                         <span class="stash-domain">${escapeHTML(item.domain)}</span>
                     </div>
@@ -52,7 +58,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     ${item.tailwindCode ? `<button class="btn-action copy-tw" data-index="${index}">Copy Tailwind</button>` : ''}
                 </div>
             `;
-            stashContainer.appendChild(el);
+            stashContainer.prepend(el);
         });
 
         // Event delegation for copy and delete buttons

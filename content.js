@@ -567,6 +567,14 @@
 
         const style = window.getComputedStyle(selectedElement);
         const bgColor = rgbToHex(style.backgroundColor);
+        const bgImage = style.backgroundImage;
+        const bgGradient = bgImage.includes('gradient') ? bgImage : null;
+
+        let imgSrc = null;
+        if (selectedElement.tagName === 'IMG') {
+            imgSrc = selectedElement.src;
+        }
+
         const cssCode = getCSSString(selectedElement);
         const tailwindCode = convertToTailwind(selectedElement);
         // Stripping HTML tags from getDOMPath in case it has the orange highlight span
@@ -577,6 +585,8 @@
             domain: window.location.hostname,
             elementName,
             bgColor,
+            bgGradient,
+            imgSrc,
             cssCode,
             tailwindCode
         };

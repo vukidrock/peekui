@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +11,19 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     </style>
 </head>
+
 <body>
     <div class="control-center">
         <button id="toggle-inspect-btn">
-            Bật chế độ soi (Alt+X)
+            Toggle Inspector (Alt/⌥ + X)
         </button>
+        <div class="quick-tips">
+            <div class="tip-item"><span>Ctrl/⌘ + S</span> : Save Element to Stash</div>
+            <div class="tip-item"><span>Space</span> : Quick Copy CSS</div>
+            <div class="tip-item"><span>Shift + Space</span> : Copy Tailwind CSS</div>
+            <div class="tip-item"><span>Hold Alt/⌥</span> : Measure Distances</div>
+            <div class="tip-item"><span>Double Click</span> : Live Edit properties</div>
+        </div>
     </div>
 
     <div class="stash-section">
@@ -22,9 +31,9 @@
             <span>Inspiration Stash</span>
             <span id="stash-count" class="badge">0</span>
         </div>
-        
+
         <div id="empty-state" class="empty-state">
-            Chưa có gì. Soi một phần tử và bấm Ctrl+S để lưu.
+            Nothing here yet. Inspect an element and press Ctrl/⌘ + S to save.
         </div>
 
         <div id="stash-container" class="stash-container">
@@ -34,4 +43,5 @@
 
     <script src="popup.js"></script>
 </body>
+
 </html>
