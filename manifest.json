@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "PeekUI",
   "version": "1.0",
-  "description": "Inspect CSS properties with a modern, minimalist UI.",
+  "description": "A high-end CSS inspector for designers and developers. Extract fonts, colors, and gradients, export to Tailwind, and stash inspirations.",
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
@@ -54,7 +54,7 @@
         "default": "Alt+X",
         "mac": "Alt+X"
       },
-      "description": "Bật/Tắt PeekUI Inspector"
+      "description": "Toggle PeekUI Inspector"
     }
   }
 }
