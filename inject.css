@@ -7,7 +7,12 @@
     border-radius: 4px;
     /* More Swiss/Minimalist */
     padding: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.02);
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.03),
+        /* Viền ảo siêu mỏng */
+        0 4px 6px -1px rgba(0, 0, 0, 0.04),
+        0 10px 15px -3px rgba(0, 0, 0, 0.08),
+        0 25px 50px -12px rgba(0, 0, 0, 0.12);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-size: 11px;
     line-height: 1.6;
@@ -22,7 +27,11 @@
 }
 
 .ali-inspector-label.is-pinned {
-    box-shadow: 0 15px 40px rgba(59, 130, 246, 0.15);
+    box-shadow:
+        0 0 0 1px rgba(59, 130, 246, 0.1),
+        0 4px 6px -1px rgba(59, 130, 246, 0.1),
+        0 10px 15px -3px rgba(59, 130, 246, 0.1),
+        0 25px 50px -12px rgba(59, 130, 246, 0.2);
     border-color: rgba(59, 130, 246, 0.2);
 }
 
@@ -124,7 +133,10 @@
     padding: 4px 8px;
     border-radius: 4px;
     pointer-events: none;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.1),
+        0 4px 6px -1px rgba(0, 0, 0, 0.2),
+        0 10px 15px -3px rgba(0, 0, 0, 0.3);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -206,6 +218,28 @@
     z-index: 10000001;
     cursor: crosshair;
     background: transparent;
+}
+
+.peekui-global-focus-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.15);
+    /* Mờ cực nhẹ */
+    backdrop-filter: blur(1px) grayscale(20%);
+    /* Hiệu ứng làm nhòe và giảm màu web */
+    z-index: 9999990;
+    /* Nằm dưới các thẻ PeekUI nhưng trên trang web */
+    pointer-events: none;
+    /* Quan trọng: Cho phép chuột xuyên qua để hover DOM */
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.peekui-global-focus-overlay.is-active {
+    opacity: 1;
 }
 
 @keyframes ali-fade-in-scale {

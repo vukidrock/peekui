@@ -1,6 +1,7 @@
 (function () {
     let active = false;
     let overlay = null;
+    let focusOverlay = null;
     let highlighter = null;
     let breadcrumbBadge = null;
     let labels = []; // Array of {element, position, targetElement}
@@ -786,12 +787,25 @@
         window.addEventListener('scroll', updateCanvas);
         window.addEventListener('keydown', handleKeyDown);
         window.addEventListener('mousemove', drawMeasurementGuides);
+
+        // Create and activate global focus overlay
+        focusOverlay = document.createElement('div');
+        focusOverlay.className = 'peekui-global-focus-overlay';
+        document.body.appendChild(focusOverlay);
+        // Force reflow for transition
+        focusOverlay.getBoundingClientRect();
+        focusOverlay.classList.add('is-active');
     };
 
     const deactivate = () => {
         if (!active) return;
         active = false;
         if (overlay) overlay.remove();
+        if (focusOverlay) {
+            focusOverlay.classList.remove('is-active');
+            // Remove after transition
+            setTimeout(() => focusOverlay && focusOverlay.remove(), 200)
+        }
         clearUI();
         // Force remove pinned ones on full deactivate
         document.querySelectorAll('.ali-inspector-label').forEach(el => el.remove());
