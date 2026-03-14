@@ -227,13 +227,13 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(15, 23, 42, 0.15);
-    /* Mờ cực nhẹ */
+    /* Very subtle dimming */
     backdrop-filter: blur(1px) grayscale(20%);
-    /* Hiệu ứng làm nhòe và giảm màu web */
+    /* Soft blur and slight desaturation */
     z-index: 9999990;
-    /* Nằm dưới các thẻ PeekUI nhưng trên trang web */
+    /* Below PeekUI elements but above web content */
     pointer-events: none;
-    /* Quan trọng: Cho phép chuột xuyên qua để hover DOM */
+    /* Crucial: Let mouse pass through to hover DOM */
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
 }
