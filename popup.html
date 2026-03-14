@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeekUI Control Center</title>
+    <link rel="stylesheet" href="popup.css">
+    <!-- Include Inter font to match Swiss aesthetics -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    </style>
+</head>
+<body>
+    <div class="control-center">
+        <button id="toggle-inspect-btn">
+            Bật chế độ soi (Alt+X)
+        </button>
+    </div>
+
+    <div class="stash-section">
+        <div class="stash-header">
+            <span>Inspiration Stash</span>
+            <span id="stash-count" class="badge">0</span>
+        </div>
+        
+        <div id="empty-state" class="empty-state">
+            Chưa có gì. Soi một phần tử và bấm Ctrl+S để lưu.
+        </div>
+
+        <div id="stash-container" class="stash-container">
+            <!-- Stash items will be injected here via popup.js -->
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

@@ -1,20 +1,9 @@
-let active = false;
-
-chrome.action.onClicked.addListener(async (tab) => {
-    active = !active;
-
-    if (active) {
-        chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            files: ['content.js']
-        });
-        chrome.scripting.insertCSS({
-            target: { tabId: tab.id },
-            files: ['inject.css']
-        });
-        chrome.tabs.sendMessage(tab.id, { action: 'activate' });
-    } else {
-        chrome.tabs.sendMessage(tab.id, { action: 'deactivate' });
+chrome.commands.onCommand.addListener(async (command) => {
+    if (command === 'toggle-inspector') {
+        const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+        if (tab && tab.id) {
+            chrome.tabs.sendMessage(tab.id, { action: 'toggle_inspect' });
+        }
     }
 });
 

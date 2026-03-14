@@ -528,10 +528,9 @@
         });
     };
 
-    const exportToCSS = () => {
-        if (!selectedElement) return;
-        const style = window.getComputedStyle(selectedElement);
-        const rect = selectedElement.getBoundingClientRect();
+    const getCSSString = (element) => {
+        const style = window.getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
 
         const props = [
             `width: ${Math.round(rect.width)}px;`,
@@ -541,7 +540,7 @@
             `padding: ${style.padding};`
         ];
 
-        if (selectedElement.tagName !== 'IMG') {
+        if (element.tagName !== 'IMG') {
             props.push(`font-size: ${style.fontSize};`);
             props.push(`font-weight: ${style.fontWeight};`);
             props.push(`color: ${rgbToHex(style.color)};`);
@@ -552,10 +551,42 @@
         const shadow = style.boxShadow;
         if (shadow !== 'none') props.push(`box-shadow: ${shadow};`);
 
-        const cssRule = `.exported-element {\n  ${props.join('\n  ')}\n}`;
+        return `.exported-element {\n  ${props.join('\n  ')}\n}`;
+    };
+
+    const exportToCSS = () => {
+        if (!selectedElement) return;
+        const cssRule = getCSSString(selectedElement);
         navigator.clipboard.writeText(cssRule).then(() => {
             showToast('🎉 CSS Copied to Clipboard!');
         });
+    };
+
+    const saveToStash = async () => {
+        if (!selectedElement) return;
+
+        const style = window.getComputedStyle(selectedElement);
+        const bgColor = rgbToHex(style.backgroundColor);
+        const cssCode = getCSSString(selectedElement);
+        const tailwindCode = convertToTailwind(selectedElement);
+        // Stripping HTML tags from getDOMPath in case it has the orange highlight span
+        const elementName = getDOMPath(selectedElement).replace(/<[^>]*>?/gm, '');
+
+        const item = {
+            url: window.location.href,
+            domain: window.location.hostname,
+            elementName,
+            bgColor,
+            cssCode,
+            tailwindCode
+        };
+
+        const data = await chrome.storage.local.get('peekui_stash');
+        const stash = data.peekui_stash || [];
+        stash.push(item);
+        await chrome.storage.local.set({ peekui_stash: stash });
+
+        showToast('📦 Saved to Stash!');
     };
 
     const inspectElement = (eOrEl) => {
@@ -728,6 +759,9 @@
             } else {
                 exportToCSS();
             }
+        } else if ((e.ctrlKey || e.metaKey) && e.key === 's' && selectedElement) {
+            e.preventDefault();
+            saveToStash();
         }
     };
 
@@ -760,7 +794,10 @@
     chrome.runtime.onMessage.addListener((msg) => {
         if (msg.action === 'activate') activate();
         if (msg.action === 'deactivate') deactivate();
+        if (msg.action === 'toggle_inspect') {
+            if (active) deactivate();
+            else activate();
+        }
     });
 
-    activate();
 })();
