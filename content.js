@@ -250,7 +250,7 @@
 
         ctx.beginPath();
         ctx.arc(startX, startY, 4, 0, 2 * Math.PI);
-        ctx.fillStyle = isDashed ? '#e5e7eb' : '#cbd5e1';
+        ctx.fillStyle = '#f97316'; // Vibrant Orange
         ctx.fill();
 
         const cp1X = startX + (endX - startX) / 2;
@@ -264,8 +264,8 @@
 
         ctx.moveTo(startX, startY);
         ctx.bezierCurveTo(cp1X, cp1Y, cp2X, cp2Y, endX, endY);
-        ctx.strokeStyle = isDashed ? '#e5e7eb' : '#cbd5e1';
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = '#f97316'; // Vibrant Orange
+        ctx.lineWidth = 1.5; // Slightly thicker for better visibility
         ctx.stroke();
         ctx.setLineDash([]); // Reset
     }
