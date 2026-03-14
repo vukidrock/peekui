@@ -219,7 +219,7 @@
     const clearUI = () => {
         if (highlighter) highlighter.remove();
         if (breadcrumbBadge) breadcrumbBadge.remove();
-        const canvas = document.getElementById('inspector-canvas');
+        const canvas = document.getElementById('ali-inspector-canvas');
         if (canvas) canvas.remove();
 
         // Remove only non-pinned labels
@@ -244,7 +244,7 @@
     };
 
     function drawConnection(startX, startY, endX, endY, isDashed = false) {
-        const canvas = document.getElementById('inspector-canvas');
+        const canvas = document.getElementById('ali-inspector-canvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
 
@@ -271,15 +271,15 @@
     }
 
     function setupCanvas() {
-        let canvas = document.getElementById('inspector-canvas');
+        let canvas = document.getElementById('ali-inspector-canvas');
         if (!canvas) {
             canvas = document.createElement('canvas');
-            canvas.id = 'inspector-canvas';
+            canvas.id = 'ali-inspector-canvas';
             canvas.style.position = 'fixed';
             canvas.style.top = '0';
             canvas.style.left = '0';
             canvas.style.pointerEvents = 'none';
-            canvas.style.zIndex = '999998';
+            canvas.style.zIndex = '20000000';
             document.body.appendChild(canvas);
         }
         canvas.width = window.innerWidth;
@@ -287,7 +287,7 @@
     }
 
     const updateCanvas = () => {
-        const canvas = document.getElementById('inspector-canvas');
+        const canvas = document.getElementById('ali-inspector-canvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         const padding = 15;
